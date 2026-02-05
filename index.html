@@ -3,188 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAIROX PROTOCOL | Institutional Trading</title>
+    <title>KAIROX PROTOCOL | Command Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #00e5ff; --bg: #010409; }
+        :root { --kairox-blue: #00d2ff; --panel-bg: #0a0b10; }
         body { 
-            background-color: var(--bg); 
-            color: #ffffff; 
-            font-family: 'Outfit', sans-serif;
+            background-color: #050608; 
+            color: #d1d5db; 
+            font-family: 'JetBrains Mono', monospace;
             margin: 0;
-            /* Fondo Tecnológico: Cuadrícula de precisión */
-            background-image: 
-                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* LOGO KAIROX - Letras compactas y nítidas */
-        .kairox-title {
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            font-size: 2.5rem;
-            line-height: 1;
-        }
-        .protocol-sub {
-            letter-spacing: 0.6em;
-            color: var(--accent);
-            font-size: 0.65rem;
-            font-weight: 700;
-        }
-
-        /* Paneles Estilo Terminal de Comando */
-        .terminal-panel {
-            background: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 229, 255, 0.1);
-            border-top: 2px solid rgba(0, 229, 255, 0.3);
-        }
-
-        /* Botón de Ejecución PRO */
-        .btn-execute {
-            background: linear-gradient(135deg, #00e5ff 0%, #007bff 100%);
-            color: #000;
-            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
         }
-        .btn-execute:hover {
+        
+        /* Tipografía de Marca: Compacta e Impactante */
+        .brand-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; letter-spacing: -1px; }
+        .protocol-sub { letter-spacing: 0.8em; color: var(--kairox-blue); font-size: 0.6rem; }
+
+        /* Estética de Terminal de Acero */
+        .terminal-border { border: 1px solid #1f2937; }
+        .header-bg { background: linear-gradient(to bottom, #111827, #050608); }
+        .panel-header { background: #111827; border-bottom: 1px solid #374151; }
+        
+        /* Botón de Ejecución: Estilo Militar/Industrial */
+        .btn-trade {
+            background: var(--kairox-blue);
+            color: #000;
+            font-weight: 800;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-trade:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
             transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.5);
-            filter: brightness(1.2);
         }
 
-        /* Risk Disclosure Impactante */
-        .risk-alert {
-            background: rgba(255, 0, 0, 0.05);
-            border: 1px solid rgba(255, 0, 0, 0.2);
-            padding: 12px;
-            border-radius: 4px;
+        /* Indicador de Riesgo: Estilo Advertencia Real */
+        .risk-banner {
+            background: repeating-linear-gradient(45deg, #000, #000 10px, #1a1a1a 10px, #1a1a1a 20px);
+            border: 1px solid #ef4444;
+            color: #ef4444;
         }
+
+        input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
     </style>
 </head>
-<body class="h-screen flex flex-col overflow-hidden uppercase">
+<body class="h-screen flex flex-col overflow-hidden">
 
-    <header class="h-28 px-10 flex justify-between items-center border-b border-white/5 bg-black/50 z-50">
-        <div class="flex items-center gap-10">
-            <div class="flex items-center gap-5">
-                <img src="logo_final.png" alt="KAIROX" class="w-20 h-20 object-contain filter drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+    <header class="h-20 flex items-center justify-between px-6 header-bg border-b-2 border-white/5 shadow-2xl">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4">
+                <img src="logo_final.png" alt="K" class="w-12 h-12 object-contain brightness-125">
                 <div class="flex flex-col">
-                    <span class="kairox-title">KAIROX</span>
-                    <span class="protocol-sub">PROTOCOL</span>
+                    <span class="text-4xl brand-main leading-none text-white">KAIROX</span>
+                    <span class="protocol-sub font-bold">PROTOCOL</span>
                 </div>
             </div>
-            
-            <nav class="hidden lg:flex gap-8 text-[11px] font-bold tracking-[0.2em] text-white/30">
-                <a href="#" class="text-white border-b-2 border-[#00e5ff] pb-1">TERMINAL</a>
-                <a href="#" class="hover:text-[#00e5ff] transition-all">STAKING</a>
-                <a href="#" class="hover:text-[#00e5ff] transition-all">DOCS</a>
-                <a href="#" class="hover:text-[#00e5ff] transition-all">GOVERNANCE</a>
+            <nav class="flex gap-6 text-[11px] font-bold border-l border-white/10 pl-8">
+                <span class="text-white border-b border-kairox-blue cursor-pointer">TERMINAL</span>
+                <span class="text-white/30 hover:text-white cursor-pointer transition-all">STAKING</span>
+                <span class="text-white/30 hover:text-white cursor-pointer transition-all">LIQUIDITY</span>
+                <span class="text-white/30 hover:text-white cursor-pointer transition-all">GOVERNANCE</span>
             </nav>
         </div>
-
-        <div class="flex items-center gap-6">
-            <div class="flex flex-col items-end mono">
-                <span class="text-[10px] text-[#00e5ff] font-bold tracking-tighter">● SYSTEM_ACTIVE</span>
-                <span class="text-[9px] text-white/20">NODE_FRA_01</span>
+        
+        <div class="flex items-center gap-4">
+            <div class="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded text-[10px] text-green-500 font-bold">
+                CORE: ACTIVE [12ms]
             </div>
-            <button class="bg-white text-black text-[10px] px-8 py-3 font-black rounded-sm hover:bg-[#00e5ff] transition-all">
+            <button class="bg-white/5 border border-white/10 hover:bg-white hover:text-black transition-all px-6 py-2 text-[10px] font-black tracking-widest">
                 CONNECT WALLET
             </button>
         </div>
     </header>
 
-    <main class="flex-1 flex p-2 gap-2 overflow-hidden">
+    <main class="flex-1 flex p-1 gap-1 overflow-hidden">
         
-        <aside class="w-80 flex flex-col gap-2">
-            <div class="terminal-panel flex-1 p-5 rounded-sm overflow-y-auto">
-                <h3 class="text-[10px] font-black text-[#00e5ff] mb-6 tracking-[0.3em]">VERIFIED MARKETS</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center p-3 bg-white/5 border-r-2 border-[#00e5ff]">
-                        <span class="text-sm font-black">SOL / USDC</span>
-                        <span class="text-xs mono text-green-400">+2.45%</span>
+        <aside class="w-64 flex flex-col gap-1">
+            <div class="flex-1 terminal-border bg-[#0a0b10] flex flex-col">
+                <div class="panel-header p-3 text-[10px] font-black tracking-widest text-white/50">MARKET SELECTION</div>
+                <div class="flex-1 overflow-y-auto">
+                    <div class="p-3 bg-white/5 border-l-2 border-kairox-blue flex justify-between items-center">
+                        <span class="text-xs font-bold text-white uppercase">SOL / USDC</span>
+                        <span class="text-[10px] text-green-500">+2.4%</span>
                     </div>
-                    <div class="flex justify-between items-center p-3 hover:bg-white/5 transition-all cursor-pointer text-white/40">
-                        <span class="text-sm font-black">JUP / USDC</span>
-                        <span class="text-xs mono text-red-400">-0.82%</span>
+                    <div class="p-3 hover:bg-white/5 flex justify-between items-center opacity-40">
+                        <span class="text-xs font-bold uppercase">JUP / USDC</span>
+                        <span class="text-[10px] text-red-500">-0.8%</span>
                     </div>
                 </div>
             </div>
 
-            <div class="risk-alert">
-                <h4 class="text-[10px] font-black text-red-500 mb-2 tracking-widest uppercase italic">Institutional Disclosure</h4>
-                <p class="text-[9px] leading-relaxed text-white/40 mono uppercase">
-                    KAIROX PROTOCOL IS A DECENTRALIZED SOFTWARE INTERFACE. TRADING INVOLVES EXTREME RISK OF CAPITAL LOSS. NON-CUSTODIAL SYSTEM V1.
-                </p>
+            <div class="risk-banner p-3 text-[8px] leading-tight font-bold">
+                <span class="block mb-1 underline">RISK DISCLOSURE:</span>
+                KAIROX PROTOCOL IS A DECENTRALIZED INTERFACE. TRADING DIGITAL ASSETS INVOLVES HIGH RISK.
             </div>
         </aside>
 
-        <section class="flex-1 terminal-panel rounded-sm overflow-hidden relative">
+        <section class="flex-1 terminal-border bg-[#0a0b10] relative">
             <div id="tradingview_chart" class="h-full"></div>
         </section>
 
-        <section class="w-[420px] terminal-panel rounded-sm flex flex-col">
-            <div class="flex border-b border-white/5">
-                <button class="flex-1 py-5 text-[11px] font-black tracking-[0.3em] bg-white/5 border-b-2 border-[#00e5ff]">ORDER EXECUTION</button>
-                <button class="flex-1 py-5 text-[11px] font-black tracking-[0.3em] text-white/20">LIMITS</button>
+        <section class="w-80 flex flex-col terminal-border bg-[#0a0b10]">
+            <div class="panel-header flex">
+                <button class="flex-1 py-4 text-[11px] font-black bg-white/5 border-b-2 border-kairox-blue">MARKET</button>
+                <button class="flex-1 py-4 text-[11px] font-black text-white/20">LIMIT</button>
             </div>
 
-            <div class="p-8 space-y-8 flex-1 flex flex-col">
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] mono font-bold text-white/30 uppercase">
-                        <span>Allocation Size</span>
-                        <span>Bal: 0.00 SOL</span>
+            <div class="p-4 space-y-6 flex-1 flex flex-col">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[9px] font-bold text-white/30 uppercase">
+                        <span>Pay Allocation</span>
+                        <span>0.00 SOL</span>
                     </div>
-                    <div class="bg-black/80 border border-white/10 p-6 rounded-sm focus-within:border-[#00e5ff] transition-all">
+                    <div class="bg-black border border-white/10 p-4 focus-within:border-kairox-blue transition-all">
                         <div class="flex justify-between items-center">
-                            <input type="number" placeholder="0.00" class="bg-transparent text-4xl font-black outline-none w-full mono placeholder:text-white/5">
-                            <span class="text-sm font-black text-[#00e5ff]">SOL</span>
+                            <input type="number" placeholder="0.00" class="bg-transparent text-2xl font-bold outline-none w-full text-white">
+                            <span class="text-xs font-bold text-kairox-blue">SOL</span>
                         </div>
                     </div>
-                    <div class="grid grid-cols-4 gap-2">
-                        <button class="py-2 bg-white/5 border border-white/10 text-[9px] font-bold hover:bg-white/20">25%</button>
-                        <button class="py-2 bg-white/5 border border-white/10 text-[9px] font-bold hover:bg-white/20">50%</button>
-                        <button class="py-2 bg-white/5 border border-white/10 text-[9px] font-bold hover:bg-white/20">75%</button>
-                        <button class="py-2 bg-white/5 border border-white/10 text-[9px] font-bold hover:bg-white/20">MAX</button>
+                    <div class="grid grid-cols-4 gap-1">
+                        <button class="py-1 bg-white/5 text-[8px] font-bold border border-white/5 hover:bg-white/10 uppercase">25%</button>
+                        <button class="py-1 bg-white/5 text-[8px] font-bold border border-white/5 hover:bg-white/10 uppercase">50%</button>
+                        <button class="py-1 bg-white/5 text-[8px] font-bold border border-white/5 hover:bg-white/10 uppercase">75%</button>
+                        <button class="py-1 bg-white/5 text-[8px] font-bold border border-white/5 hover:bg-white/10 uppercase">MAX</button>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <label class="text-[10px] mono font-bold text-white/30">TARGET MINT ADDRESS</label>
-                    <div class="bg-black/80 border border-white/10 p-5 rounded-sm">
-                        <input type="text" placeholder="PASTE CONTRACT" class="bg-transparent text-[11px] font-bold outline-none w-full mono text-[#00e5ff]">
+                <div class="space-y-2">
+                    <label class="text-[9px] font-bold text-white/30 uppercase tracking-widest">Target Mint Address</label>
+                    <div class="bg-black border border-white/10 p-4">
+                        <input type="text" placeholder="PASTE CONTRACT" class="bg-transparent text-[10px] font-bold outline-none w-full text-white/50">
                     </div>
                 </div>
 
-                <div class="p-4 bg-[#00e5ff]/5 border border-[#00e5ff]/20 rounded-sm space-y-2 mt-auto">
-                    <div class="flex justify-between text-[9px] mono">
-                        <span class="opacity-40">ROUTING ENGINE:</span>
-                        <span class="text-white font-bold">KAIROX-DIRECT V1</span>
-                    </div>
-                    <div class="flex justify-between text-[9px] mono">
-                        <span class="opacity-40">MEV PROTECTION:</span>
-                        <span class="text-green-400 font-bold">SHIELD ACTIVE</span>
-                    </div>
+                <div class="space-y-2 text-[9px] font-bold text-white/20 border-t border-white/5 pt-4">
+                    <div class="flex justify-between"><span>Route:</span> <span class="text-white">KAIROX-V1</span></div>
+                    <div class="flex justify-between"><span>MEV Protect:</span> <span class="text-green-500">ENCRYPTED</span></div>
+                    <div class="flex justify-between"><span>Est. Fee:</span> <span class="text-white">0.00005 SOL</span></div>
                 </div>
 
-                <button class="btn-execute w-full py-7 rounded-sm text-sm">
-                    EXECUTE TRADE
+                <button class="btn-trade w-full py-5 mt-auto text-sm tracking-[0.2em] shadow-lg">
+                    EXECUTE_TRADE
                 </button>
             </div>
-        </aside>
+        </section>
     </main>
 
-    <footer class="h-10 border-t border-white/5 bg-black px-10 flex justify-between items-center text-[9px] mono text-white/20">
-        <div class="flex gap-10 uppercase font-bold">
-            <span>Server Status: Operational</span>
-            <span>Uptime: 99.998%</span>
+    <footer class="h-8 bg-black border-t border-white/5 px-6 flex justify-between items-center text-[9px] font-bold text-white/20">
+        <div class="flex gap-8">
+            <span>UPTIME: 99.998%</span>
+            <span>RELAY: FRA_ACTIVE</span>
         </div>
-        <div class="tracking-widest font-black italic">KAIROX PROTOCOL TECHNOLOGY © 2026</div>
+        <div class="tracking-[0.2em] italic uppercase">KAIROX_PROTOCOL_TECHNOLOGY_INTERFACE_©_2026</div>
     </footer>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -196,10 +169,11 @@
             "theme": "dark",
             "style": "1",
             "container_id": "tradingview_chart",
-            "backgroundColor": "#0d1117",
-            "gridColor": "rgba(0, 229, 255, 0.02)",
+            "backgroundColor": "#0a0b10",
+            "gridColor": "rgba(255, 255, 255, 0.02)",
             "allow_symbol_change": true,
-            "hide_top_toolbar": false
+            "hide_top_toolbar": false,
+            "save_image": false
         });
     </script>
 </body>
