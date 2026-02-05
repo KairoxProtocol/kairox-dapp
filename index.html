@@ -3,102 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAIROX | Meme Execution Terminal</title>
+    <title>KAIROX PROTOCOL | Institutional Derivative Layer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: #f8fafc; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
+        body { background-color: #02040a; color: #e6edf3; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .border-kairox { border: 1px solid rgba(6, 182, 212, 0.2); }
-        .bg-panel { background: #0a0f1e; }
-        .text-cyan { color: #06b6d4; }
-        .btn-glow:hover { box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+        .border-main { border: 1px solid rgba(48, 54, 61, 0.8); }
+        .bg-card { background: #0d1117; }
+        .text-cyan { color: #58a6ff; } /* Azul institucional estilo GitHub/TradingView */
+        .glow-cyan { box-shadow: 0 0 20px rgba(88, 166, 255, 0.1); }
+        
+        /* Estética de scrollbar profesional */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #02040a; }
+        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
     </style>
 </head>
-<body class="h-screen flex flex-col">
+<body class="h-screen flex flex-col uppercase">
 
-    <header class="h-14 border-b border-white/5 flex justify-between items-center px-6 bg-[#020617]">
-        <div class="flex items-center gap-3">
-          <img src="logo_final.png" alt="KAIROX" class="w-10 h-10 object-contain">
-            <h1 class="text-md font-black tracking-[0.4em] uppercase">KAIROX <span class="text-cyan">TERMINAL</span></h1>
-        </div>
+    <header class="h-12 border-b border-main flex justify-between items-center px-4 bg-[#0d1117] z-50">
         <div class="flex items-center gap-6">
-            <div class="hidden md:flex gap-4 text-[9px] mono text-slate-500 uppercase">
-                <span>MEME_INDEX: <span class="text-green-400">+12.4%</span></span>
-                <span>GAS: <span class="text-cyan">FAST</span></span>
+            <div class="flex items-center gap-2">
+                <img src="logo_final.png" alt="K" class="w-6 h-6 object-contain">
+                <span class="font-black tracking-[0.3em] text-sm">KAIROX <span class="text-cyan">PROTOCOL</span></span>
             </div>
-            <button class="bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] px-4 py-2 rounded-sm font-bold uppercase tracking-widest transition-all btn-glow">
+            <div class="h-4 w-[1px] bg-gray-700"></div>
+            <div class="flex gap-6 text-[10px] font-bold tracking-widest text-gray-500">
+                <span class="text-white">Trade</span>
+                <span class="hover:text-cyan cursor-pointer transition-colors">Staking</span>
+                <span class="hover:text-cyan cursor-pointer transition-colors">Governance</span>
+                <span class="hover:text-cyan cursor-pointer transition-colors">Analytics</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-[9px] mono text-green-500">Mainnet-v1</span>
+            </div>
+            <button class="bg-[#f0f6fc] text-black text-[10px] px-4 py-1.5 rounded font-bold hover:bg-cyan-400 transition-all">
                 Connect Wallet
             </button>
         </div>
     </header>
 
+    <section class="h-10 border-b border-main bg-[#02040a] flex items-center px-4 gap-8 text-[10px] mono overflow-x-auto whitespace-nowrap">
+        <div class="flex gap-2"><span class="text-gray-500">SOL:</span> <span class="text-white">$145.22</span> <span class="text-green-500">+1.2%</span></div>
+        <div class="flex gap-2"><span class="text-gray-500">KAIROX_VOL:</span> <span class="text-white">$1.2M</span></div>
+        <div class="flex gap-2"><span class="text-gray-500">NETWORK_FEES:</span> <span class="text-cyan">LOW</span></div>
+        <div class="flex gap-2 ml-auto"><span class="text-gray-500 italic">"Focusing on the elite of Solana liquidity"</span></div>
+    </section>
+
     <main class="flex-1 flex overflow-hidden p-1 gap-1">
         
-        <div class="flex-[3] border-kairox bg-panel rounded-sm overflow-hidden">
-            <div id="tradingview_chart" class="h-full"></div>
-        </div>
-
-        <div class="flex-1 min-w-[350px] border-kairox bg-panel rounded-sm p-5 flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-[10px] mono text-cyan tracking-[0.2em] uppercase font-bold">Quick Execution</h2>
-                <span class="text-[9px] bg-cyan-900/30 text-cyan px-2 py-0.5 rounded border border-cyan-500/20">MEME_MODE</span>
+        <aside class="w-64 border-main bg-card rounded-sm hidden xl:flex flex-col">
+            <div class="p-3 border-b border-main bg-black/20 text-[10px] font-bold tracking-widest">Market Selection</div>
+            <div class="flex-1 overflow-y-auto">
+                <div class="p-3 border-b border-main/50 bg-cyan-500/5 flex justify-between items-center cursor-pointer">
+                    <span class="text-[11px] font-bold text-cyan">SOL / USDC</span>
+                    <span class="text-[9px] mono text-green-500">+4.2%</span>
+                </div>
+                <div class="p-3 border-b border-main/30 hover:bg-white/5 flex justify-between items-center cursor-pointer">
+                    <span class="text-[11px] font-bold text-gray-400">JUP / USDC</span>
+                    <span class="text-[9px] mono text-red-500">-1.2%</span>
+                </div>
+                <div class="p-3 border-b border-main/30 hover:bg-white/5 flex justify-between items-center cursor-pointer">
+                    <span class="text-[11px] font-bold text-gray-400">BONK / USDC</span>
+                    <span class="text-[9px] mono text-green-500">+12.8%</span>
+                </div>
             </div>
-            
-            <div class="space-y-3">
-                <div class="bg-[#020617] p-3 border border-white/10 rounded-sm">
-                    <div class="flex justify-between text-[9px] mono text-slate-500 uppercase mb-1">
-                        <span>Balance: 0.00 SOL</span>
-                        <span class="text-cyan cursor-pointer">MAX</span>
+        </aside>
+
+        <section class="flex-1 border-main bg-card rounded-sm overflow-hidden relative">
+            <div class="absolute top-4 left-4 z-10 bg-black/60 p-2 border border-main rounded backdrop-blur-md">
+                <h2 class="text-xs font-black tracking-tighter">SOLANA / USD <span class="text-gray-500 font-normal ml-2">5m</span></h2>
+            </div>
+            <div id="tradingview_chart" class="h-full"></div>
+        </section>
+
+        <section class="w-80 border-main bg-card rounded-sm flex flex-col shadow-2xl glow-cyan">
+            <div class="flex border-b border-main">
+                <button class="flex-1 py-4 text-[10px] font-black tracking-widest border-b-2 border-cyan-500 bg-cyan-500/5">Market</button>
+                <button class="flex-1 py-4 text-[10px] font-black tracking-widest text-gray-600 hover:text-gray-300">Limit</button>
+            </div>
+
+            <div class="p-4 space-y-6">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[9px] mono font-bold">
+                        <span class="text-gray-500">Pay</span>
+                        <span class="text-gray-400 text-[8px]">Available: 0.00 SOL</span>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <input type="number" placeholder="0.0" class="bg-transparent text-xl font-bold outline-none w-1/2 mono">
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm font-bold">SOL</span>
+                    <div class="bg-[#02040a] border border-main p-4 rounded hover:border-gray-500 transition-all">
+                        <div class="flex justify-between items-center">
+                            <input type="number" placeholder="0.00" class="bg-transparent text-xl font-bold outline-none w-1/2 mono">
+                            <span class="text-xs font-black">SOL</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-4 gap-1">
-                    <button class="py-1 bg-white/5 border border-white/10 text-[9px] mono hover:bg-white/10">0.1</button>
-                    <button class="py-1 bg-white/5 border border-white/10 text-[9px] mono hover:bg-white/10">0.5</button>
-                    <button class="py-1 bg-white/5 border border-white/10 text-[9px] mono hover:bg-white/10">1.0</button>
-                    <button class="py-1 bg-white/5 border border-white/10 text-[9px] mono hover:bg-white/10">MAX</button>
+                    <button class="py-1 bg-[#161b22] border border-main text-[8px] font-bold hover:bg-cyan-500 hover:text-black transition-all">25%</button>
+                    <button class="py-1 bg-[#161b22] border border-main text-[8px] font-bold hover:bg-cyan-500 hover:text-black transition-all">50%</button>
+                    <button class="py-1 bg-[#161b22] border border-main text-[8px] font-bold hover:bg-cyan-500 hover:text-black transition-all">75%</button>
+                    <button class="py-1 bg-[#161b22] border border-main text-[8px] font-bold hover:bg-cyan-500 hover:text-black transition-all">100%</button>
                 </div>
 
-                <div class="py-2 flex justify-center text-slate-700">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                </div>
-
-                <div class="bg-[#020617] p-3 border border-white/10 rounded-sm">
-                    <label class="text-[9px] mono text-slate-500 uppercase">You Receive (Tokens)</label>
-                    <div class="flex justify-between items-center mt-1">
-                        <input type="text" placeholder="Select Token" class="bg-transparent text-sm font-bold outline-none w-full mono text-cyan">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[9px] mono font-bold">
+                        <span class="text-gray-500">Receive</span>
+                    </div>
+                    <div class="bg-[#02040a] border border-main p-4 rounded">
+                        <div class="flex justify-between items-center">
+                            <input type="text" placeholder="Paste Contract Address" class="bg-transparent text-[10px] font-bold outline-none w-full mono text-cyan placeholder:text-gray-800">
+                        </div>
                     </div>
                 </div>
 
-                <button class="w-full py-4 bg-cyan-600 text-white font-black rounded-sm hover:bg-cyan-500 transition-all uppercase tracking-[0.2em] text-xs mt-4 btn-glow">
-                    Instant Buy
+                <div class="p-3 bg-black/40 rounded border border-main space-y-2">
+                    <div class="flex justify-between text-[8px] mono">
+                        <span class="text-gray-500">Router</span>
+                        <span class="text-white">Kairox-Direct</span>
+                    </div>
+                    <div class="flex justify-between text-[8px] mono">
+                        <span class="text-gray-500">Slippage</span>
+                        <span class="text-cyan font-bold">Auto 1.0%</span>
+                    </div>
+                    <div class="flex justify-between text-[8px] mono">
+                        <span class="text-gray-500">Est. Fee</span>
+                        <span class="text-white">$0.02</span>
+                    </div>
+                </div>
+
+                <button class="w-full py-4 bg-[#f0f6fc] text-black font-black text-[11px] tracking-[0.4em] rounded hover:bg-cyan-500 hover:text-white transition-all transform active:scale-95 shadow-lg">
+                    Execute Trade
                 </button>
             </div>
 
-            <div class="mt-auto space-y-2 pt-4 border-t border-white/5">
-                <div class="flex justify-between text-[9px] mono">
-                    <span class="text-slate-500">MEV PROTECTION</span>
-                    <span class="text-green-500 uppercase">Enabled</span>
+            <div class="mt-auto p-4 border-t border-main bg-black/20 text-[8px] mono text-gray-600">
+                <div class="flex items-center gap-2 mb-1">
+                    <div class="w-1 h-1 rounded-full bg-cyan-500"></div>
+                    <span>Anti-MEV Protection Enabled</span>
                 </div>
-                <div class="flex justify-between text-[9px] mono">
-                    <span class="text-slate-500">SLIPPAGE</span>
-                    <span class="text-cyan">AUTO (10%)</span>
-                </div>
+                <span>Protocol version: 1.0.8-stable</span>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="h-6 border-t border-white/5 bg-[#020617] flex justify-between items-center px-4 text-[8px] mono text-slate-600 uppercase">
-        <span>SYSTEM_STATUS: STABLE</span>
-        <span>KAIROX_V1_CORE</span>
-        <span class="text-cyan/40">©2026</span>
+    <footer class="h-6 bg-[#0d1117] border-t border-main px-4 flex justify-between items-center text-[8px] mono text-gray-500">
+        <div class="flex gap-4">
+            <span>Server: Frankfurt-01</span>
+            <span>Latency: 12ms</span>
+        </div>
+        <span>© 2026 KAIROX PROTOCOL. Institutional Trading Infrastructure.</span>
     </footer>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -112,10 +168,11 @@
             "style": "1",
             "locale": "en",
             "container_id": "tradingview_chart",
-            "backgroundColor": "#0a0f1e",
-            "gridColor": "rgba(42, 46, 57, 0.05)",
-            "hide_side_toolbar": false,
-            "allow_symbol_change": true
+            "backgroundColor": "#0d1117",
+            "gridColor": "rgba(48, 54, 61, 0.1)",
+            "allow_symbol_change": true,
+            "hide_top_toolbar": false,
+            "save_image": false
         });
     </script>
 </body>
