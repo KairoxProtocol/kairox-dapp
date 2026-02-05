@@ -3,160 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAIROX PROTOCOL | Institutional Derivative Layer</title>
+    <title>KAIROX | Institutional Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;800;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #02040a; color: #e6edf3; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .border-main { border: 1px solid rgba(48, 54, 61, 0.8); }
-        .bg-card { background: #0d1117; }
-        .text-cyan { color: #58a6ff; }
-        .glow-cyan { box-shadow: 0 0 25px rgba(88, 166, 255, 0.08); }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #02040a; }
-        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+        
+        /* Efecto de Vidrio Esmerilado Premium */
+        .glass { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* LOGO NITIDO: Evita que se vea borroso al escalar */
+        .logo-sharp { image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #58a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-premium {
+            background: #ffffff;
+            color: #000;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        .btn-premium:hover { background: #58a6ff; color: #fff; box-shadow: 0 0 25px rgba(88, 166, 255, 0.4); }
     </style>
 </head>
-<body class="h-screen flex flex-col uppercase">
+<body class="h-screen flex flex-col uppercase tracking-tight">
 
-    <header class="h-20 border-b border-main flex justify-between items-center px-8 bg-[#0d1117] z-50">
-        <div class="flex items-center gap-10">
-            <div class="flex items-center gap-5">
-                <img src="logo_final.png" alt="K" class="w-14 h-14 object-contain scale-110">
+    <header class="h-24 px-10 flex justify-between items-center border-b border-white/5 bg-black">
+        <div class="flex items-center gap-12">
+            <div class="flex items-center gap-6">
+                <img src="logo_final.png" alt="K" class="w-20 h-20 logo-sharp object-contain">
                 <div class="flex flex-col">
-                    <span class="font-black tracking-[0.5em] text-2xl leading-none">KAIROX</span>
-                    <span class="text-cyan text-[10px] tracking-[0.8em] font-bold mt-1">PROTOCOL</span>
+                    <h1 class="text-4xl font-black tracking-[0.4em] leading-none">KAIROX</h1>
+                    <p class="text-[10px] tracking-[1em] text-cyan-400 font-bold opacity-80 mt-2">INSTITUTIONAL LAYER</p>
                 </div>
             </div>
-            <div class="h-10 w-[1px] bg-gray-800"></div>
-            <nav class="flex gap-8 text-[11px] font-bold tracking-widest text-gray-500">
-                <span class="text-white border-b-2 border-cyan-500 pb-1 cursor-pointer">Trade</span>
-                <span class="hover:text-cyan cursor-pointer transition-colors">Staking</span>
-                <span class="hover:text-cyan cursor-pointer transition-colors">Governance</span>
-                <span class="hover:text-cyan cursor-pointer transition-colors">Analytics</span>
+            
+            <nav class="hidden lg:flex gap-10 text-[11px] font-bold tracking-[0.2em] text-white/40">
+                <a href="#" class="text-white border-b-2 border-white pb-1">EXCHANGE</a>
+                <a href="#" class="hover:text-white transition-all">LIQUIDITY</a>
+                <a href="#" class="hover:text-white transition-all">STAKING</a>
+                <a href="#" class="hover:text-white transition-all">DOCS</a>
             </nav>
         </div>
-        <div class="flex items-center gap-6">
-            <div class="flex items-center gap-2 px-4 py-1.5 bg-green-500/5 border border-green-500/20 rounded-sm">
-                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
-                <span class="text-[10px] mono text-green-500 font-bold">SYSTEM: OPERATIONAL</span>
+
+        <div class="flex items-center gap-8">
+            <div class="hidden sm:flex flex-col items-end mono">
+                <span class="text-[10px] text-green-500 font-bold uppercase tracking-widest">● System Live</span>
+                <span class="text-[9px] text-white/30">v1.0.4-beta</span>
             </div>
-            <button class="bg-white text-black text-[11px] px-8 py-3 rounded-sm font-black hover:bg-cyan-500 hover:text-white transition-all shadow-lg active:scale-95">
-                CONNECT WALLET
+            <button class="btn-premium px-10 py-4 text-xs font-black tracking-[0.2em] rounded-sm">
+                CONNECT TERMINAL
             </button>
         </div>
     </header>
 
-    <section class="h-10 border-b border-main bg-[#02040a] flex items-center px-6 gap-10 text-[10px] mono overflow-x-auto whitespace-nowrap">
-        <div class="flex gap-2"><span class="text-gray-600">SOL:</span> <span class="text-white">$145.22</span> <span class="text-green-500">+1.2%</span></div>
-        <div class="flex gap-2"><span class="text-gray-600">KAIROX_VOL:</span> <span class="text-white font-bold">$1.2M</span></div>
-        <div class="flex gap-2"><span class="text-gray-600">LIQUIDITY:</span> <span class="text-cyan">OPTIMIZED</span></div>
-        <div class="flex gap-2 ml-auto text-gray-700 font-bold tracking-tighter italic">"Institutional-grade liquidity routing"</div>
+    <section class="h-12 bg-white/5 border-b border-white/5 flex items-center px-10 gap-12 text-[10px] mono text-white/60">
+        <div class="flex gap-3"><span class="opacity-40">ASSET:</span> <span class="text-white">SOL/USD</span> <span class="text-green-400">$145.22 (+1.2%)</span></div>
+        <div class="flex gap-3"><span class="opacity-40">24H_VOL:</span> <span class="text-white font-bold">$1,240,553.10</span></div>
+        <div class="flex gap-3"><span class="opacity-40">STATUS:</span> <span class="text-cyan-400">HIGH_LIQUIDITY</span></div>
+        <div class="ml-auto opacity-20 tracking-[0.3em]">Institutional-grade liquidity routing active</div>
     </section>
 
-    <main class="flex-1 flex overflow-hidden p-1 gap-1">
+    <main class="flex-1 flex overflow-hidden p-2 gap-2">
         
-        <aside class="w-72 border-main bg-card rounded-sm hidden xl:flex flex-col">
-            <div class="p-5 border-b border-main bg-black/30 text-[11px] font-black tracking-[0.2em] text-gray-400">Verified Markets</div>
+        <aside class="w-80 glass rounded-sm flex flex-col">
+            <div class="p-6 border-b border-white/5 text-[12px] font-black tracking-[0.3em] text-white/80">MARKETS</div>
             <div class="flex-1 overflow-y-auto">
-                <div class="p-5 border-b border-main/50 bg-cyan-500/5 flex justify-between items-center cursor-pointer border-l-4 border-l-cyan-500">
-                    <span class="text-xs font-black text-cyan">SOL / USDC</span>
-                    <span class="text-[10px] mono text-green-500 font-bold">+4.2%</span>
+                <div class="p-6 border-b border-white/5 bg-white/5 border-l-4 border-white flex justify-between items-center cursor-pointer">
+                    <span class="text-sm font-black">SOL / USDC</span>
+                    <span class="text-xs mono text-green-400">+4.2%</span>
                 </div>
-                <div class="p-5 border-b border-main/30 hover:bg-white/5 flex justify-between items-center cursor-pointer transition-all">
-                    <span class="text-xs font-black text-gray-500">JUP / USDC</span>
-                    <span class="text-[10px] mono text-red-500">-1.2%</span>
-                </div>
-                <div class="p-5 border-b border-main/30 hover:bg-white/5 flex justify-between items-center cursor-pointer transition-all">
-                    <span class="text-xs font-black text-gray-500">BONK / USDC</span>
-                    <span class="text-[10px] mono text-green-500">+12.8%</span>
+                <div class="p-6 border-b border-white/5 hover:bg-white/5 flex justify-between items-center cursor-pointer transition-all">
+                    <span class="text-sm font-black text-white/40">JUP / USDC</span>
+                    <span class="text-xs mono text-red-400">-1.2%</span>
                 </div>
             </div>
         </aside>
 
-        <section class="flex-1 border-main bg-card rounded-sm overflow-hidden relative">
+        <section class="flex-1 glass rounded-sm overflow-hidden">
             <div id="tradingview_chart" class="h-full"></div>
         </section>
 
-        <section class="w-96 border-main bg-card rounded-sm flex flex-col shadow-2xl glow-cyan">
-            <div class="flex border-b border-main">
-                <button class="flex-1 py-5 text-[11px] font-black tracking-[0.3em] border-b-2 border-cyan-500 bg-cyan-500/5">Market</button>
-                <button class="flex-1 py-5 text-[11px] font-black tracking-[0.3em] text-gray-700 hover:text-gray-300 transition-colors">Limit</button>
+        <section class="w-[450px] glass rounded-sm flex flex-col shadow-2xl">
+            <div class="flex border-b border-white/5">
+                <button class="flex-1 py-6 text-xs font-black tracking-[0.3em] bg-white/5 border-b-2 border-white">MARKET</button>
+                <button class="flex-1 py-6 text-xs font-black tracking-[0.3em] text-white/20 hover:text-white transition-all">LIMIT</button>
             </div>
 
-            <div class="p-6 space-y-8">
-                <div class="space-y-3">
-                    <div class="flex justify-between text-[10px] mono font-bold text-gray-600">
-                        <span>Allocation (SOL)</span>
-                        <span>Bal: 0.00</span>
+            <div class="p-8 space-y-10">
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[11px] mono font-bold text-white/40">
+                        <span>SIZE (SOL)</span>
+                        <span>MAX: 0.00</span>
                     </div>
-                    <div class="bg-[#02040a] border border-main p-5 rounded-sm focus-within:border-cyan-500 transition-all">
+                    <div class="bg-black/50 border border-white/10 p-6 rounded-sm focus-within:border-white transition-all">
                         <div class="flex justify-between items-center">
-                            <input type="number" placeholder="0.00" class="bg-transparent text-2xl font-black outline-none w-1/2 mono">
-                            <span class="text-sm font-black text-gray-400">SOL</span>
+                            <input type="number" placeholder="0.00" class="bg-transparent text-3xl font-black outline-none w-full mono placeholder:text-white/10">
+                            <span class="text-sm font-black text-white/40 ml-4">SOL</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-4 gap-2">
-                    <button class="py-2 bg-[#161b22] border border-main text-[9px] font-black hover:bg-cyan-500 hover:text-black transition-all">25%</button>
-                    <button class="py-2 bg-[#161b22] border border-main text-[9px] font-black hover:bg-cyan-500 hover:text-black transition-all">50%</button>
-                    <button class="py-2 bg-[#161b22] border border-main text-[9px] font-black hover:bg-cyan-500 hover:text-black transition-all">75%</button>
-                    <button class="py-2 bg-[#161b22] border border-main text-[9px] font-black hover:bg-cyan-500 hover:text-black transition-all">MAX</button>
-                </div>
-
-                <div class="space-y-3">
-                    <label class="text-[10px] mono font-bold text-gray-600">Target Token Address</label>
-                    <div class="bg-[#02040a] border border-main p-5 rounded-sm focus-within:border-cyan-500 transition-all">
-                        <input type="text" placeholder="PASTE MINT ADDRESS" class="bg-transparent text-[11px] font-bold outline-none w-full mono text-cyan placeholder:text-gray-800">
+                    <div class="flex gap-2">
+                        <button class="flex-1 py-2 bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-white hover:text-black transition-all">25%</button>
+                        <button class="flex-1 py-2 bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-white hover:text-black transition-all">50%</button>
+                        <button class="flex-1 py-2 bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-white hover:text-black transition-all">75%</button>
+                        <button class="flex-1 py-2 bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-white hover:text-black transition-all">MAX</button>
                     </div>
                 </div>
 
-                <div class="p-4 bg-black/40 rounded-sm border border-main space-y-3 text-[9px] mono uppercase">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600">Routing Engine</span>
-                        <span class="text-white font-bold">Kairox-Direct (v1.0)</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600">Slippage Tolerance</span>
-                        <span class="text-cyan font-bold">1.0% Auto</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600">MEV Protection</span>
-                        <span class="text-green-500 font-bold font-mono px-2 py-0.5 bg-green-500/10 border border-green-500/20 rounded-sm italic">Encrypted</span>
+                <div class="space-y-4">
+                    <label class="text-[11px] mono font-bold text-white/40">DESTINATION MINT</label>
+                    <div class="bg-black/50 border border-white/10 p-6 rounded-sm focus-within:border-white transition-all">
+                        <input type="text" placeholder="TOKEN ADDRESS" class="bg-transparent text-sm font-bold outline-none w-full mono text-cyan-400 placeholder:text-white/5 uppercase">
                     </div>
                 </div>
 
-                <button class="w-full py-6 bg-white text-black font-black text-[13px] tracking-[0.6em] rounded-sm hover:bg-cyan-500 hover:text-white transition-all transform active:scale-95 shadow-2xl">
-                    CONFIRM TRADE
+                <div class="p-6 bg-white/5 border border-white/5 space-y-4 text-[10px] mono">
+                    <div class="flex justify-between uppercase"><span class="opacity-40">Router</span><span class="font-bold">Kairox-Vault-1</span></div>
+                    <div class="flex justify-between uppercase"><span class="opacity-40">Slippage</span><span class="text-cyan-400">Adaptive</span></div>
+                    <div class="flex justify-between uppercase"><span class="opacity-40">MEV-Shield</span><span class="text-green-400">Active</span></div>
+                </div>
+
+                <button class="w-full py-8 bg-white text-black font-black text-sm tracking-[0.8em] rounded-sm hover:scale-[1.02] transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                    EXECUTE
                 </button>
             </div>
-
-            <div class="mt-auto p-5 border-t border-main bg-black/20 text-[9px] mono text-gray-700 leading-relaxed italic">
-                Notice: By executing, you confirm the algorithmic routing parameters for Kairox Protocol v1.
-            </div>
-        </section>
+        </aside>
     </main>
 
-    <footer class="bg-[#0d1117] border-t border-main px-6 py-3 flex flex-col gap-3">
-        <div class="flex justify-between items-center text-[9px] mono text-gray-600">
-            <div class="flex gap-6 items-center">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
-                    <span>NODE: FRA-01 (ACTIVE)</span>
-                </div>
-                <span>LATENCY: 12ms</span>
+    <footer class="h-16 bg-black border-t border-white/5 px-10 flex flex-col justify-center">
+        <div class="flex justify-between text-[10px] mono text-white/20 uppercase">
+            <div class="flex gap-8">
+                <span>Latency: 4ms</span>
+                <span>Relay: Global-1</span>
             </div>
-            <div class="flex gap-6">
-                <span class="text-cyan/40 hover:text-cyan cursor-pointer transition-colors">TERMS OF SERVICE</span>
-                <span class="text-cyan/40 hover:text-cyan cursor-pointer transition-colors">PRIVACY POLICY</span>
-                <span class="font-bold text-gray-500">© 2026 KAIROX PROTOCOL</span>
-            </div>
+            <span>© 2026 KAIROX PROTOCOL | Institutional Derivative Layer</span>
         </div>
-        <div class="text-[8px] text-gray-800 mono leading-none text-center border-t border-white/5 pt-2 tracking-widest">
-            RISK DISCLOSURE: KAIROX IS A DECENTRALIZED SOFTWARE INTERFACE. TRADING CRYPTOCURRENCIES INVOLVES SIGNIFICANT RISK. WE DO NOT HOLD CUSTODY OF ASSETS.
-        </div>
+        <p class="text-[8px] text-white/10 mono text-center mt-2 tracking-widest uppercase">
+            Risk Disclosure: Trading digital assets involves high risk. Kairox is a non-custodial software interface.
+        </p>
     </footer>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -164,16 +153,15 @@
         new TradingView.widget({
             "autosize": true,
             "symbol": "SOLUSDC",
-            "interval": "5",
+            "interval": "1",
             "theme": "dark",
             "style": "1",
             "locale": "en",
             "container_id": "tradingview_chart",
-            "backgroundColor": "#0d1117",
-            "gridColor": "rgba(48, 54, 61, 0.1)",
-            "allow_symbol_change": true,
-            "hide_top_toolbar": false,
-            "save_image": false
+            "backgroundColor": "#050505",
+            "gridColor": "rgba(255, 255, 255, 0.03)",
+            "hide_side_toolbar": false,
+            "allow_symbol_change": true
         });
     </script>
 </body>
