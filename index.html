@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIROX PROTOCOL | Institutional Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #020617; color: #f8fafc; font-family: sans-serif; }
+        .cyan-glow { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); border: 1px solid rgba(6, 182, 212, 0.5); }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <header class="w-full max-w-6xl p-6 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="logo.png" alt="Kairox Logo" class="w-16 h-16 drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+            <h1 class="text-xl font-bold tracking-widest uppercase">KAIROX <span class="text-cyan-500">PROTOCOL</span></h1>
+        </div>
+    </header>
+
+    <main class="mt-10 w-full max-w-lg p-4 rounded-3xl glass cyan-glow">
+        <div id="integrated-terminal"></div>
+    </main>
+
+    <footer class="mt-auto p-10 text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center">
+        Powered by Kairox Protocol & Jupiter Aggregator
+    </footer>
+
+    <script src="https://terminal.jup.ag/main-v2.js"></script>
+    <script>
+      window.Jupiter.init({
+        displayMode: "integrated",
+        integratedTargetId: "integrated-terminal",
+        endpoint: "https://api.mainnet-beta.solana.com",
+        strictTokenList: true,
+        formProps: {
+          fixedOutputMint: false,
+        },
+        theme: 'dark',
+        customTheme: {
+            palette: {
+                primary: '#06b6d4', 
+                base: '#020617',
+                surface: '#0f172a',
+            }
+        }
+      });
+    </script>
+</body>
+</html>
