@@ -3,29 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAIROX PROTOCOL | Institutional Exchange</title>
+    <title>KAIROX PROTOCOL | Institutional Trading Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: #f8fafc; font-family: sans-serif; }
-        .cyan-glow { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); border: 1px solid rgba(6, 182, 212, 0.5); }
-        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+        body { 
+            background-color: #020617; 
+            color: #f8fafc; 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .cyan-glow { box-shadow: 0 0 30px rgba(6, 182, 212, 0.1); }
+        .border-cyan { border: 1px solid rgba(6, 182, 212, 0.2); }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center">
+<body class="min-h-screen flex flex-col">
 
-    <header class="w-full max-w-6xl p-6 flex justify-between items-center">
+    <nav class="w-full border-b border-white/5 bg-[#020617] p-4 flex justify-between items-center z-50">
         <div class="flex items-center gap-4">
-            <img src="logo.png" alt="Kairox Logo" class="w-16 h-16 drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">
-            <h1 class="text-xl font-bold tracking-widest uppercase">KAIROX <span class="text-cyan-500">PROTOCOL</span></h1>
+            <img src="logo.png" alt="Kairox" class="w-10 h-10 grayscale brightness-125">
+            <div class="leading-none">
+                <h1 class="text-lg font-bold tracking-[0.3em] uppercase">KAIROX</h1>
+                <span class="text-[9px] text-cyan-500 tracking-[0.4em] mono">INSTITUTIONAL LAYER</span>
+            </div>
         </div>
-    </header>
+        <div class="flex gap-6 items-center">
+            <div class="hidden lg:flex gap-4 text-[10px] mono text-slate-400 uppercase tracking-widest">
+                <span class="text-green-500">● Live Feed</span>
+                <span>Market: Open</span>
+                <span>Latency: 14ms</span>
+            </div>
+            <button class="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-[11px] font-bold rounded-sm transition-all tracking-widest uppercase">
+                Connect Wallet
+            </button>
+        </div>
+    </nav>
 
-    <main class="mt-10 w-full max-w-lg p-4 rounded-3xl glass cyan-glow">
-        <div id="integrated-terminal"></div>
+    <main class="flex-1 flex flex-col lg:flex-row p-2 gap-2">
+        
+        <div class="flex-[2] flex flex-col gap-2">
+            <div class="flex-1 border-cyan rounded-sm overflow-hidden bg-[#0a0f1e] min-h-[400px]">
+                <div id="tradingview_chart" class="h-full w-full"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                new TradingView.widget({
+                    "autosize": true,
+                    "symbol": "SOLUSDC",
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#020617",
+                    "enable_publishing": false,
+                    "hide_top_toolbar": false,
+                    "hide_legend": false,
+                    "save_image": false,
+                    "container_id": "tradingview_chart",
+                    "backgroundColor": "#020617",
+                    "gridColor": "rgba(42, 46, 57, 0.06)",
+                    "details": false,
+                    "hotlist": false,
+                    "calendar": false
+                });
+                </script>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col gap-2 min-w-[380px]">
+            <div class="p-4 border-cyan rounded-sm bg-[#0a0f1e] flex-1 flex flex-col">
+                <h3 class="text-[11px] mono text-cyan-500 mb-4 tracking-[0.3em] uppercase">Execution Terminal</h3>
+                
+                <div id="integrated-terminal" class="flex-1"></div>
+            </div>
+        </div>
+
     </main>
 
-    <footer class="mt-auto p-10 text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center">
-        Powered by Kairox Protocol & Jupiter Aggregator
+    <footer class="p-3 border-t border-white/5 flex justify-between items-center text-[9px] mono text-slate-500 uppercase tracking-widest bg-[#020617]">
+        <div>© 2026 KAIROX PROTOCOL | Secured Institutional Access</div>
+        <div class="flex gap-4">
+            <span class="text-cyan-900">v4.2.0-stable</span>
+            <span>All systems operational</span>
+        </div>
     </footer>
 
     <script src="https://terminal.jup.ag/main-v2.js"></script>
@@ -35,15 +102,13 @@
         integratedTargetId: "integrated-terminal",
         endpoint: "https://api.mainnet-beta.solana.com",
         strictTokenList: true,
-        formProps: {
-          fixedOutputMint: false,
-        },
         theme: 'dark',
         customTheme: {
             palette: {
-                primary: '#06b6d4', 
-                base: '#020617',
-                surface: '#0f172a',
+                primary: '#0891b2',
+                base: '#0a0f1e',
+                surface: '#020617',
+                container: '#020617',
             }
         }
       });
