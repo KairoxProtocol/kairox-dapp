@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAIROX | Ultimate Meme Exchange</title>
+    <title>KAIROX PROTOCOL | Institutional Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
     <style>
-        :root { 
+        :root {
             --neon-pink: #ff00ff;
-            --neon-green: #00ffa3; 
-            --bg-deep: #020617;
+            --neon-green: #00ffa3;
+            --accent-blue: #00d1ff;
         }
 
+        /* FONDO MESH GRADIENT PRO - ELIMINA EL LOOK BARATO */
         body { 
-            background: var(--bg-deep);
+            background: #020617;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(188, 19, 254, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.1) 0px, transparent 50%);
-            color: #fff; 
+                radial-gradient(at 0% 0%, rgba(188, 19, 254, 0.15) 0px, transparent 45%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.08) 0px, transparent 45%),
+                radial-gradient(at 100% 0%, rgba(0, 209, 255, 0.1) 0px, transparent 40%);
+            color: #f1f5f9; 
             font-family: 'Plus Jakarta Sans', sans-serif;
             height: 100vh;
             overflow: hidden;
@@ -26,151 +28,171 @@
             text-transform: uppercase;
         }
 
-        /* SIDEBAR RECUPERADO */
+        /* SIDEBAR INSTITUCIONAL PRESERVADO */
         .sidebar {
-            width: 100px;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
+            width: 110px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(30px);
             border-right: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 0;
+            padding: 40px 0;
             z-index: 50;
         }
 
-        .glass-card { 
-            background: rgba(15, 23, 42, 0.6); 
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.5); 
             backdrop-filter: blur(40px); 
             border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
 
-        /* BORDE DE NEÓN DEL GRÁFICO */
-        .neon-chart-frame {
+        /* MARCO DE NEÓN DINÁMICO PARA EL GRÁFICO */
+        .neon-chart-container {
             border: 2px solid var(--neon-pink);
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-            animation: neon-flow 4s infinite alternate ease-in-out;
+            animation: border-glow 5s infinite alternate ease-in-out;
         }
 
-        @keyframes neon-flow {
-            0% { border-color: var(--neon-pink); }
-            100% { border-color: #bc13fe; box-shadow: 0 0 30px rgba(188, 19, 254, 0.4); }
+        @keyframes border-glow {
+            0% { border-color: var(--neon-pink); box-shadow: 0 0 15px rgba(255, 0, 255, 0.2); }
+            100% { border-color: var(--accent-blue); box-shadow: 0 0 30px rgba(0, 209, 255, 0.4); }
         }
 
-        /* BOTONES DE EJECUCIÓN MEJORADOS */
-        .btn-trade {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 900;
+        /* BOTONES DE ACCIÓN "ULTIMATE" */
+        .btn-action {
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            font-weight: 800;
             letter-spacing: 2px;
             text-align: center;
-        }
-        .btn-trade-green { background: var(--neon-green); color: #000; }
-        .btn-trade-pink { background: var(--neon-pink); color: #fff; }
-        
-        .btn-trade:hover {
-            transform: translateY(-4px) scale(1.02);
-            filter: brightness(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
         }
 
-        .input-area {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+        .btn-swap { background: var(--neon-green); color: #000; }
+        .btn-execute { background: var(--neon-pink); color: #fff; box-shadow: 0 0 25px rgba(255, 0, 255, 0.3); }
+
+        .btn-action:hover {
+            transform: translateY(-4px) scale(1.02);
+            filter: brightness(1.1);
         }
+
+        .input-wrapper {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            transition: border 0.3s ease;
+        }
+        .input-wrapper:focus-within { border-color: var(--neon-green); }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar h-full gap-10">
-        <div class="w-14 h-14 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl">
-            <span class="text-2xl font-black">K</span>
+    <aside class="sidebar">
+        <div class="mb-16">
+            <div class="w-16 h-16 bg-gradient-to-tr from-purple-600 to-cyan-400 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(188,19,254,0.5)]">
+                <span class="text-3xl font-black text-white">K</span>
+            </div>
         </div>
-        <nav class="flex flex-col gap-8 text-[10px] font-bold text-slate-500">
-            <button class="hover:text-white transition-colors">TRADE</button>
-            <button class="hover:text-white transition-colors">SWAP</button>
-            <button class="hover:text-white transition-colors">POOL</button>
-            <button class="hover:text-white transition-colors">STAKE</button>
+        <nav class="flex flex-col gap-12 text-[11px] font-black text-slate-500 tracking-widest">
+            <button class="text-white border-r-2 border-neon-green pr-2">TRADE</button>
+            <button class="hover:text-white">POOLS</button>
+            <button class="hover:text-white">STAKE</button>
+            <button class="hover:text-white">STATS</button>
         </nav>
     </aside>
 
-    <div class="flex-1 flex flex-col p-6 gap-6 overflow-hidden">
+    <div class="flex-1 flex flex-col p-8 gap-8 overflow-hidden">
         
-        <header class="h-16 flex justify-between items-center px-4 shrink-0">
-            <div class="flex flex-col leading-none">
-                <h1 class="text-2xl font-black tracking-tighter">KAIROX PROTOCOL</h1>
-                <span class="text-[9px] tracking-[0.6em] text-emerald-400 font-bold italic">PRO TERMINAL_MODE</span>
+        <header class="flex justify-between items-center px-2 shrink-0">
+            <div>
+                <h1 class="text-4xl font-black tracking-tighter italic">KAIROX <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">PROTOCOL</span></h1>
+                <p class="text-[10px] tracking-[0.6em] text-slate-500 font-bold mt-1">PRO TERMINAL ACCESS // SOLANA MAINNET</p>
             </div>
-            <div class="flex items-center gap-6">
-                <span class="text-[10px] font-bold text-emerald-400 animate-pulse">● ENGINE_ACTIVE</span>
-                <button class="bg-white/5 border border-white/10 px-8 py-3 rounded-xl text-xs font-black hover:bg-white hover:text-black transition-all">
+            <div class="flex items-center gap-10">
+                <div class="text-right">
+                    <p class="text-[9px] font-bold text-slate-500 mb-1">NETWORK_STATUS</p>
+                    <p class="text-xs text-emerald-400 font-black italic">● OPERATIONAL_8MS</p>
+                </div>
+                <button class="bg-white/5 border border-white/10 px-10 py-4 rounded-2xl text-[11px] font-black hover:bg-white hover:text-black transition-all">
                     CONNECT WALLET
                 </button>
             </div>
         </header>
 
-        <main class="flex-1 flex gap-6 min-h-0">
-            <section class="flex-[1.7] flex flex-col gap-6">
-                <div class="glass-card flex-1 rounded-[40px] p-6 flex flex-col">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-black text-slate-400 italic">SOL / USDC REAL-TIME</span>
+        <main class="flex-1 flex gap-8 min-h-0">
+            <section class="flex-[1.8] flex flex-col gap-8">
+                <div class="glass-panel flex-1 rounded-[48px] p-8 flex flex-col">
+                    <div class="flex justify-between items-center mb-6 px-2">
+                        <span class="text-xs font-black text-slate-400 italic">LIVE MARKET: SOL/USDC</span>
+                        <div class="flex gap-4">
+                            <span class="text-[10px] font-bold text-cyan-400 mono">PRICE: $78.74</span>
+                        </div>
                     </div>
-                    <div class="flex-1 rounded-3xl overflow-hidden neon-chart-frame">
+                    <div class="flex-1 rounded-[32px] overflow-hidden neon-chart-container">
                         <div id="tradingview_chart" class="h-full"></div>
                     </div>
                 </div>
 
-                <div class="glass-card h-24 rounded-[30px] flex items-center px-8 gap-8">
-                    <span class="text-[10px] font-black text-slate-500">HOT GEMS:</span>
-                    <div class="flex gap-6">
-                        <div class="text-sm font-black text-emerald-400">DOG +15.4%</div>
-                        <div class="text-sm font-black text-emerald-400">PEPE +89.2%</div>
-                        <div class="text-sm font-black text-red-500">WIF -2.1%</div>
+                <div class="glass-panel h-28 rounded-[35px] flex items-center px-12 gap-12 overflow-x-auto">
+                    <span class="text-[11px] font-black text-slate-600">TRENDING:</span>
+                    <div class="flex gap-10">
+                        <div class="flex flex-col"><span class="text-[10px] font-bold text-slate-500">DOG/SOL</span><span class="text-lg font-black text-emerald-400">+15.2%</span></div>
+                        <div class="flex flex-col"><span class="text-[10px] font-bold text-slate-500">SHIB/SOL</span><span class="text-lg font-black text-emerald-400">+89.1%</span></div>
+                        <div class="flex flex-col"><span class="text-[10px] font-bold text-slate-500">PEPE/SOL</span><span class="text-lg font-black text-red-500">-2.4%</span></div>
                     </div>
                 </div>
             </section>
 
-            <section class="flex-1 glass-card rounded-[50px] flex flex-col overflow-hidden">
-                <div class="flex p-3 bg-black/30 gap-2 shrink-0">
-                    <button class="flex-1 py-4 text-xs font-black bg-white/5 text-emerald-400 rounded-2xl border border-emerald-400/20">QUICK SWAP</button>
-                    <button class="flex-1 py-4 text-xs font-black text-slate-600">LIMIT</button>
+            <section class="flex-1 glass-panel rounded-[60px] flex flex-col overflow-hidden border-2 border-white/5 shadow-2xl">
+                <div class="flex p-4 bg-black/30 gap-3 shrink-0">
+                    <button class="flex-1 py-5 text-xs font-black text-emerald-400 bg-white/5 rounded-[28px] border border-emerald-400/20">QUICK SWAP</button>
+                    <button class="flex-1 py-5 text-xs font-black text-slate-600">LIMIT ORDER</button>
                 </div>
 
-                <div class="p-10 flex-1 flex flex-col justify-between">
-                    <div class="space-y-8">
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-[10px] font-bold text-slate-500"><span>YOU SEND</span><span>MAX: 100%</span></div>
-                            <div class="input-area p-8 flex justify-between items-center">
-                                <input type="number" placeholder="0.00" class="bg-transparent text-5xl font-black outline-none w-full text-white">
-                                <span class="text-xl font-black text-emerald-400 italic">SOL</span>
+                <div class="p-12 flex-1 flex flex-col justify-between">
+                    <div class="space-y-12">
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-xs font-bold text-slate-500 px-2">
+                                <span>YOU SEND</span>
+                                <span>BALANCE: 0.00 SOL</span>
+                            </div>
+                            <div class="input-wrapper p-10 flex justify-between items-center">
+                                <input type="number" placeholder="0.00" class="bg-transparent text-6xl font-black outline-none w-full text-white mono">
+                                <div class="bg-white/5 px-6 py-2 rounded-2xl border border-white/10">
+                                    <span class="text-xl font-black text-emerald-400 italic">SOL</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-[10px] font-bold text-slate-500"><span>RECEIVE TOKEN ADDRESS</span></div>
-                            <div class="input-area p-6">
-                                <input type="text" placeholder="PASTE MINT ADDRESS" class="bg-transparent text-xs font-bold outline-none w-full text-cyan-400">
+                        <div class="space-y-4">
+                            <span class="text-xs font-bold text-slate-500 px-2">TARGET ASSET ADDRESS</span>
+                            <div class="input-wrapper p-7">
+                                <input type="text" placeholder="PASTE MINT ADDRESS" class="bg-transparent text-sm font-bold outline-none w-full text-cyan-400 mono">
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-6">
                         <div class="flex gap-4">
-                            <button class="btn-trade btn-trade-green flex-1 py-7 rounded-[28px] text-xs">SWAP</button>
-                            <button class="btn-trade btn-trade-pink flex-1 py-7 rounded-[28px] text-xs">EXECUTE ORDER</button>
+                            <button class="btn-action btn-swap flex-1 py-8 rounded-[32px] text-sm italic">SWAP</button>
+                            <button class="btn-action btn-execute flex-1 py-8 rounded-[32px] text-sm italic">EXECUTE ORDER</button>
                         </div>
-                        <p class="text-[9px] text-center text-slate-500 font-bold italic tracking-wider">SECURED BY SOLANA NETWORK</p>
+                        <div class="bg-black/20 p-4 rounded-2xl border border-white/5">
+                            <p class="text-[9px] text-center text-slate-500 font-bold leading-relaxed tracking-wider">
+                                TRANSACTION SECURED BY KAIROX HIGH-FREQUENCY ENGINE. FEES: 0.1%
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <footer class="h-6 px-4 flex justify-between items-center text-[9px] text-slate-600 font-bold">
-            <span>© 2026 KAIROX PROTOCOL | POWERED BY GENESIS ENGINE</span>
-            <div class="flex gap-6">
-                <span>LATENCY: 4ms</span>
-                <span class="text-emerald-500 italic">ALL SYSTEMS NOMINAL</span>
-            </div>
+        <footer class="h-6 flex justify-between items-center px-4 text-[10px] text-slate-600 font-bold mono">
+            <span>© 2026 KAIROX PROTOCOL TECHNOLOGY</span>
+            <span>ENGINE_V6.0 // STABLE_RELEASE</span>
         </footer>
     </div>
 
